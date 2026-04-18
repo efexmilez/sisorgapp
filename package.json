@@ -2,6 +2,7 @@
   "name": "sis-club-org",
   "version": "0.1.0",
   "private": true,
+  "main": "server/index.ts",
   "scripts": {
     "dev": "next dev -p 5139",
     "dev:server": "tsx watch server/index.ts",
