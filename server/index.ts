@@ -38,10 +38,18 @@ app.use((req, res, next) => {
 
 // Security middleware
 app.use(helmet())
+const allowedOrigins = process.env.NODE_ENV === 'production'
+  ? (process.env.ALLOWED_ORIGINS || 'https://sisclub.ng').split(',').map(o => o.trim())
+  : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:5139', 'http://127.0.0.1:5139']
+
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production'
-    ? process.env.NEXT_PUBLIC_APP_URL || 'https://sisclub.ng'
-    : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:5139', 'http://127.0.0.1:5139'],
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.some(o => origin === o || origin.endsWith('.vercel.app'))) {
+      callback(null, true)
+    } else {
+      callback(new Error(`CORS: origin ${origin} not allowed`))
+    }
+  },
   credentials: true,
 }))
 
