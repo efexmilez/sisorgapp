@@ -208,83 +208,88 @@ export default function ContributionsPage() {
     );
   }
 
-  const monthlyContribution = 500000; // ₦5,000 in kobo
-
   return (
     <div className="bg-background text-on-surface">
-      {/* SideNavBar */}
-      <aside className="h-screen w-64 fixed left-0 top-0 bg-slate-100 border-r border-slate-200/50 flex flex-col py-6 z-50">
-        <div className="px-6 mb-8">
-          <h1 className="text-lg font-black text-sky-950 font-manrope tracking-tight">Wealth Management</h1>
-          <p className="text-xs text-slate-500">Mutual Fund Portal</p>
+      {/* SideNavBar — desktop only; mobile uses bottom nav */}
+      <aside className="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 border-r-0 bg-slate-50 py-8 z-50">
+        <div className="px-6 mb-10">
+          <h1 className="text-lg font-black text-sky-950 leading-tight">The Vault</h1>
+          <p className="text-xs text-on-surface-variant font-medium opacity-70">Club Member Portal</p>
         </div>
-        <nav className="flex-1 space-y-1">
-          <Link href="/dashboard" className="flex items-center px-6 py-3 text-slate-500 hover:text-sky-800 hover:bg-slate-200/50 transition-all duration-200 font-manrope">
-            <span className="material-symbols-outlined mr-3">dashboard</span>
-            Dashboard
+        <nav className="flex-1 px-4 space-y-1">
+          <Link href="/dashboard" className="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-200/50 hover:pl-4 transition-all duration-300">
+            <span className="material-symbols-outlined">dashboard</span>
+            <span className="text-sm">Dashboard</span>
           </Link>
-          <Link href="/loans" className="flex items-center px-6 py-3 text-slate-500 hover:text-sky-800 hover:bg-slate-200/50 transition-all duration-200 font-manrope">
-            <span className="material-symbols-outlined mr-3">payments</span>
-            Loans
+          <Link href="/loans" className="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-200/50 hover:pl-4 transition-all duration-300">
+            <span className="material-symbols-outlined">payments</span>
+            <span className="text-sm">Loans</span>
           </Link>
-          <Link href="/contributions" className="flex items-center px-6 py-3 text-sky-950 font-bold border-r-4 border-sky-900 bg-sky-50/50 transition-all duration-200 font-manrope">
-            <span className="material-symbols-outlined mr-3">account_balance_wallet</span>
-            Contributions
+          <Link href="/contributions" className="flex items-center gap-3 px-3 py-3 rounded-lg bg-sky-100/50 text-sky-950 border-r-4 border-sky-900 transition-all duration-300">
+            <span className="material-symbols-outlined">account_balance_wallet</span>
+            <span className="font-semibold text-sm">Contributions</span>
           </Link>
-          <Link href="/profile" className="flex items-center px-6 py-3 text-slate-500 hover:text-sky-800 hover:bg-slate-200/50 transition-all duration-200 font-manrope">
-            <span className="material-symbols-outlined mr-3">person</span>
-            Profile
+          <Link href="/profile" className="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-200/50 hover:pl-4 transition-all duration-300">
+            <span className="material-symbols-outlined">person</span>
+            <span className="text-sm">Profile</span>
           </Link>
         </nav>
-        <div className="px-6 mt-auto space-y-1">
-          <button className="flex items-center py-3 text-slate-500 hover:text-sky-800 transition-all font-manrope w-full">
-            <span className="material-symbols-outlined mr-3">settings</span>
-            Settings
+        <div className="mt-auto px-4 pt-6 space-y-1 border-t border-slate-200/50">
+          <Link href="/loans" className="block w-full bg-gradient-to-r from-primary to-primary-container text-white py-3 rounded-xl font-semibold text-sm mb-6 shadow-lg shadow-sky-900/10 text-center active:scale-95 transition-all">
+            Request Loan
+          </Link>
+          <button type="button" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-200/50 w-full">
+            <span className="material-symbols-outlined">help</span>
+            <span className="text-sm">Support</span>
           </button>
-          <button onClick={handleLogout} className="flex items-center py-3 text-slate-500 hover:text-error transition-all font-manrope">
-            <span className="material-symbols-outlined mr-3">logout</span>
-            Logout
+          <button type="button" onClick={handleLogout} className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-200/50 w-full text-left">
+            <span className="material-symbols-outlined">logout</span>
+            <span className="text-sm">Logout</span>
           </button>
         </div>
       </aside>
 
-      {/* Main Content */}
-      <main className="ml-64 min-h-screen">
-        {/* TopNavBar */}
-        <header className="bg-slate-50/80 backdrop-blur-xl sticky top-0 flex justify-between items-center px-8 py-3 w-full z-40 shadow-sm">
-          <div className="flex items-center gap-4">
-            <span className="text-xl font-bold text-sky-950 font-manrope">The Private Vault</span>
+      {/* TopNavBar */}
+      <header className="fixed top-0 w-full z-40 bg-slate-50/80 backdrop-blur-xl md:pl-64 border-b border-slate-200/30">
+        <div className="flex justify-between items-center gap-3 px-4 sm:px-6 py-3 w-full min-w-0">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="md:hidden text-base font-bold tracking-tight text-sky-950 truncate">Contributions</span>
+            <h2 className="hidden md:block text-xl font-bold tracking-tight text-sky-950">Your Contributions</h2>
           </div>
-          <div className="flex items-center space-x-6">
-            <button className="material-symbols-outlined text-slate-500 hover:bg-slate-100 p-2 rounded-full cursor-pointer transition-colors">notifications</button>
-            <button className="material-symbols-outlined text-slate-500 hover:bg-slate-100 p-2 rounded-full cursor-pointer transition-colors">help</button>
-            <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+            <button type="button" className="material-symbols-outlined text-slate-500 hover:bg-slate-100 p-2 rounded-full transition-colors hidden sm:inline-flex" aria-label="Notifications">notifications</button>
+            <button type="button" className="material-symbols-outlined text-slate-500 hover:bg-slate-100 p-2 rounded-full transition-colors" aria-label="Help">help</button>
+            <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white text-sm font-bold shrink-0">
               {user.full_name?.[0] || 'M'}
             </div>
           </div>
-        </header>
+        </div>
+      </header>
 
-        <div className="p-8 max-w-7xl mx-auto">
+      <main className="md:pl-64 pt-16 min-h-screen pb-24 md:pb-8">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8 max-w-7xl mx-auto">
           {/* Page Header */}
-          <div className="mb-10">
-            <h2 className="text-4xl font-extrabold font-manrope text-primary tracking-tight">Your Contributions</h2>
-            <p className="text-on-surface-variant mt-2 text-lg">Track your savings and collective growth within the club.</p>
+          <div className="mb-6 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-manrope text-primary tracking-tight">Your Contributions</h2>
+            <p className="text-on-surface-variant mt-2 text-sm sm:text-base md:text-lg max-w-2xl">Track your savings and collective growth within the club.</p>
           </div>
 
           {/* DVA Account Card */}
-          <div className="bg-gradient-to-r from-primary to-primary-container text-white rounded-xl p-8 mb-10 shadow-xl">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div>
-                <h3 className="text-lg font-bold mb-1">Your SIS Club Account</h3>
-                <p className="text-primary-fixed/80 text-sm">Transfer your monthly contribution to this dedicated account</p>
+          <div className="bg-gradient-to-r from-primary to-primary-container text-white rounded-xl p-4 sm:p-8 mb-6 sm:mb-10 shadow-xl">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
+              <div className="min-w-0">
+                <h3 className="text-base sm:text-lg font-bold mb-1">Your SIS Club Account</h3>
+                <p className="text-primary-fixed/80 text-xs sm:text-sm">Transfer your monthly contribution to this dedicated account</p>
               </div>
-              <div className="text-center md:text-right">
+              <div className="text-left md:text-right min-w-0 w-full md:w-auto">
                 <p className="text-xs text-primary-fixed/60 uppercase tracking-wider mb-1">{staticDVA.bank_name}</p>
-                <div className="flex items-center gap-3 justify-center md:justify-end">
-                  <span className="text-3xl font-mono font-black tracking-wider">{staticDVA.account_number}</span>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:justify-end">
+                  <span className="text-xl sm:text-2xl md:text-3xl font-mono font-black tracking-wider break-all">{staticDVA.account_number}</span>
                   <button
+                    type="button"
                     onClick={() => copyToClipboard(staticDVA.account_number)}
-                    className="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                    className="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors shrink-0"
+                    aria-label="Copy account number"
                   >
                     {copied ? (
                       <span className="material-symbols-outlined text-green-300">check</span>
@@ -293,105 +298,137 @@ export default function ContributionsPage() {
                     )}
                   </button>
                 </div>
-                <p className="text-sm text-primary-fixed/80 mt-1">{staticDVA.account_name}</p>
+                <p className="text-xs sm:text-sm text-primary-fixed/80 mt-1 break-words">{staticDVA.account_name}</p>
               </div>
             </div>
-            <div className="mt-6 pt-6 border-t border-white/20">
-              <p className="text-xs text-primary-fixed/60">
+            <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/20">
+              <p className="text-xs text-primary-fixed/60 leading-relaxed">
                 {staticDVA.instruction}
               </p>
             </div>
           </div>
 
           {/* Bento Grid Summary */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between h-48 group hover:shadow-lg transition-shadow">
-              <div>
-                <span className="label-md uppercase tracking-widest text-on-surface-variant font-semibold text-xs">Total Lifetime Contributions</span>
-                <div className="mt-4 flex items-baseline">
-                  <span className="text-4xl font-extrabold font-manrope text-primary">{formatNaira(balance.total_contributed_kobo)}</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
+            <div className="bg-surface-container-lowest p-5 sm:p-8 rounded-xl flex flex-col justify-between min-h-[10rem] md:h-48 group hover:shadow-lg transition-shadow">
+              <div className="min-w-0">
+                <span className="label-md uppercase tracking-widest text-on-surface-variant font-semibold text-[10px] sm:text-xs">Total Lifetime Contributions</span>
+                <div className="mt-3 sm:mt-4 flex items-baseline flex-wrap gap-x-1">
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-manrope text-primary break-words">{formatNaira(balance.total_contributed_kobo)}</span>
                 </div>
               </div>
-              <div className="flex items-center text-xs text-green-600 font-medium">
-                <span className="material-symbols-outlined text-sm mr-1">trending_up</span>
+              <div className="flex items-center text-xs text-green-600 font-medium mt-3">
+                <span className="material-symbols-outlined text-sm mr-1 shrink-0">trending_up</span>
                 +12% from last year
               </div>
             </div>
 
-            <div className="bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between h-48 border border-transparent hover:border-outline-variant/20 transition-all">
-              <div>
-                <span className="label-md uppercase tracking-widest text-on-surface-variant font-semibold text-xs">This Month&apos;s Deposit</span>
-                <div className="mt-4 flex items-baseline">
-                  <span className="text-3xl font-bold font-manrope text-on-surface">{formatNaira(balance.this_month_contribution_kobo)}</span>
+            <div className="bg-surface-container-lowest p-5 sm:p-8 rounded-xl flex flex-col justify-between min-h-[10rem] md:h-48 border border-transparent hover:border-outline-variant/20 transition-all">
+              <div className="min-w-0">
+                <span className="label-md uppercase tracking-widest text-on-surface-variant font-semibold text-[10px] sm:text-xs">This Month&apos;s Deposit</span>
+                <div className="mt-3 sm:mt-4 flex items-baseline">
+                  <span className="text-xl sm:text-2xl md:text-3xl font-bold font-manrope text-on-surface break-words">{formatNaira(balance.this_month_contribution_kobo)}</span>
                 </div>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center mt-3">
                 <span className="px-3 py-1 bg-green-100 text-green-800 text-[10px] font-bold rounded-full tracking-wider uppercase">Due: 25th</span>
               </div>
             </div>
 
-            <div className="bg-primary-container p-8 rounded-xl flex flex-col justify-between h-48 text-on-primary-container shadow-lg shadow-primary/10">
+            <div className="bg-primary-container p-5 sm:p-8 rounded-xl flex flex-col justify-between min-h-[10rem] md:h-48 text-on-primary-container shadow-lg shadow-primary/10">
               <div>
-                <span className="label-md uppercase tracking-widest opacity-70 font-semibold text-xs">Total Contributions</span>
-                <div className="mt-4">
-                  <span className="text-2xl font-bold font-manrope">{balance.contribution_count}</span>
+                <span className="label-md uppercase tracking-widest opacity-70 font-semibold text-[10px] sm:text-xs">Total Contributions</span>
+                <div className="mt-3 sm:mt-4">
+                  <span className="text-xl sm:text-2xl font-bold font-manrope">{balance.contribution_count}</span>
                   <span className="text-sm ml-2 opacity-70">months</span>
                 </div>
               </div>
-              <div className="flex items-center text-xs font-medium">
-                <span className="material-symbols-outlined text-sm mr-1">event_repeat</span>
+              <div className="flex items-center text-xs font-medium mt-3">
+                <span className="material-symbols-outlined text-sm mr-1 shrink-0">event_repeat</span>
                 Autopay Active
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
             {/* Transaction History */}
-            <div className="lg:col-span-8 space-y-6">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xl font-bold font-manrope text-primary">Transaction History</h3>
-                <button className="text-primary text-sm font-semibold flex items-center hover:opacity-70 transition-opacity">
-                  View All <span className="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
-                </button>
+            <div className="lg:col-span-8 space-y-4 sm:space-y-6 order-2 lg:order-1">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <h3 className="text-lg sm:text-xl font-bold font-manrope text-primary">Transaction History</h3>
+                <span className="hidden md:inline text-on-surface-variant text-xs sm:text-sm">Scroll horizontally if needed</span>
               </div>
-              <div className="bg-surface-container-lowest rounded-xl overflow-hidden">
+
+              {/* Mobile: card list */}
+              <div className="md:hidden space-y-3">
+                {contributions.length === 0 ? (
+                  <div className="bg-surface-container-lowest rounded-xl p-6 text-center text-sm text-on-surface-variant border border-outline-variant/10">
+                    No transactions yet. Make your first deposit below.
+                  </div>
+                ) : (
+                  contributions.map((contribution) => (
+                    <div
+                      key={contribution.id}
+                      className="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant/10 shadow-sm"
+                    >
+                      <div className="flex justify-between items-start gap-3 mb-2">
+                        <span className="text-sm font-medium text-on-surface">{contribution.paid_at_wat}</span>
+                        {getStatusBadge(contribution.status)}
+                      </div>
+                      <p className="text-xs text-on-surface-variant mb-1">Monthly Savings</p>
+                      <p className="text-xs font-mono text-on-surface-variant break-all mb-2">{contribution.paystack_reference}</p>
+                      <p className="text-base font-bold text-green-600">{formatNaira(contribution.amount_kobo)}</p>
+                    </div>
+                  ))
+                )}
+              </div>
+
+              {/* Desktop: table */}
+              <div className="hidden md:block bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
+                  <table className="w-full text-left border-collapse min-w-[640px]">
                     <thead>
                       <tr className="bg-surface-container-low">
-                        <th className="px-6 py-4 label-md uppercase tracking-wider text-[10px] font-bold text-on-surface-variant">Date</th>
-                        <th className="px-6 py-4 label-md uppercase tracking-wider text-[10px] font-bold text-on-surface-variant">Description</th>
-                        <th className="px-6 py-4 label-md uppercase tracking-wider text-[10px] font-bold text-on-surface-variant">Reference</th>
-                        <th className="px-6 py-4 label-md uppercase tracking-wider text-[10px] font-bold text-on-surface-variant text-right">Amount</th>
-                        <th className="px-6 py-4 label-md uppercase tracking-wider text-[10px] font-bold text-on-surface-variant text-center">Status</th>
+                        <th className="px-4 lg:px-6 py-4 label-md uppercase tracking-wider text-[10px] font-bold text-on-surface-variant">Date</th>
+                        <th className="px-4 lg:px-6 py-4 label-md uppercase tracking-wider text-[10px] font-bold text-on-surface-variant">Description</th>
+                        <th className="px-4 lg:px-6 py-4 label-md uppercase tracking-wider text-[10px] font-bold text-on-surface-variant">Reference</th>
+                        <th className="px-4 lg:px-6 py-4 label-md uppercase tracking-wider text-[10px] font-bold text-on-surface-variant text-right">Amount</th>
+                        <th className="px-4 lg:px-6 py-4 label-md uppercase tracking-wider text-[10px] font-bold text-on-surface-variant text-center">Status</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y-0">
-                      {contributions.map((contribution, index) => (
-                        <tr key={contribution.id} className={`${index % 2 === 1 ? 'bg-surface-container-low/30' : ''} hover:bg-surface-container-low transition-colors`}>
-                          <td className="px-6 py-5 text-sm font-medium text-on-surface">{contribution.paid_at_wat}</td>
-                          <td className="px-6 py-5 text-sm text-on-surface-variant">Monthly Savings</td>
-                          <td className="px-6 py-5 text-sm font-mono text-outline">{contribution.paystack_reference}</td>
-                          <td className="px-6 py-5 text-sm font-bold text-on-surface text-right text-green-600">{formatNaira(contribution.amount_kobo)}</td>
-                          <td className="px-6 py-5 text-center">{getStatusBadge(contribution.status)}</td>
+                    <tbody>
+                      {contributions.length === 0 ? (
+                        <tr>
+                          <td colSpan={5} className="px-6 py-12 text-center text-sm text-on-surface-variant">
+                            No transactions yet. Make your first deposit using the form.
+                          </td>
                         </tr>
-                      ))}
+                      ) : (
+                        contributions.map((contribution, index) => (
+                          <tr key={contribution.id} className={`${index % 2 === 1 ? 'bg-surface-container-low/30' : ''} hover:bg-surface-container-low transition-colors`}>
+                            <td className="px-4 lg:px-6 py-5 text-sm font-medium text-on-surface whitespace-nowrap">{contribution.paid_at_wat}</td>
+                            <td className="px-4 lg:px-6 py-5 text-sm text-on-surface-variant">Monthly Savings</td>
+                            <td className="px-4 lg:px-6 py-5 text-sm font-mono text-outline max-w-[12rem] truncate" title={contribution.paystack_reference}>{contribution.paystack_reference}</td>
+                            <td className="px-4 lg:px-6 py-5 text-sm font-bold text-right text-green-600 whitespace-nowrap">{formatNaira(contribution.amount_kobo)}</td>
+                            <td className="px-4 lg:px-6 py-5 text-center">{getStatusBadge(contribution.status)}</td>
+                          </tr>
+                        ))
+                      )}
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
 
-            {/* New Contribution Form */}
-            <div className="lg:col-span-4">
-              <div className="bg-surface-container-low rounded-xl p-8 sticky top-24">
+            {/* New Contribution Form — first on mobile for primary action */}
+            <div className="lg:col-span-4 order-1 lg:order-2">
+              <div id="new-contribution" className="bg-surface-container-low rounded-xl p-5 sm:p-8 lg:sticky lg:top-24">
                 <h3 className="text-xl font-bold font-manrope text-primary mb-6">New Contribution</h3>
                 
                 {successMessage && (
                   <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                     <div className="flex items-start gap-2">
                       <span className="material-symbols-outlined text-green-600">check_circle</span>
-                      <p className="text-sm text-green-800">{successMessage}</p>
+                      <p className="text-sm text-green-800 break-words">{successMessage}</p>
                     </div>
                   </div>
                 )}
@@ -422,7 +459,7 @@ export default function ContributionsPage() {
                         required
                       />
                     </div>
-                    <div className="mt-2 flex gap-2">
+                    <div className="mt-2 flex flex-wrap gap-2">
                       {[5000, 10000, 25000, 50000].map((preset) => (
                         <button
                           key={preset}
@@ -474,7 +511,7 @@ export default function ContributionsPage() {
                   </button>
                 </form>
 
-                <div className="mt-10 p-6 rounded-lg bg-surface-container-lowest/50 border border-outline-variant/20">
+                <div className="mt-8 sm:mt-10 p-4 sm:p-6 rounded-lg bg-surface-container-lowest/50 border border-outline-variant/20">
                   <h4 className="text-sm font-bold text-primary flex items-center mb-3">
                     <span className="material-symbols-outlined mr-2 text-lg">info</span>
                     Growth Forecast
@@ -495,6 +532,34 @@ export default function ContributionsPage() {
           </div>
         </div>
       </main>
+
+      {/* Bottom nav — mobile */}
+      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-slate-50/90 backdrop-blur-lg flex justify-around items-center py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] border-t border-slate-200/80 shadow-[0_-10px_30px_rgba(0,0,0,0.05)] z-50" aria-label="Primary">
+        <Link href="/dashboard" className="flex flex-col items-center gap-1 text-slate-500 min-w-0 px-1">
+          <span className="material-symbols-outlined text-[22px]">dashboard</span>
+          <span className="text-[10px] font-medium truncate max-w-[4.5rem]">Dashboard</span>
+        </Link>
+        <Link href="/loans" className="flex flex-col items-center gap-1 text-slate-500 min-w-0 px-1">
+          <span className="material-symbols-outlined text-[22px]">payments</span>
+          <span className="text-[10px] font-medium truncate max-w-[4.5rem]">Loans</span>
+        </Link>
+        <Link href="/contributions" className="flex flex-col items-center gap-1 text-sky-950 font-semibold min-w-0 px-1">
+          <span className="material-symbols-outlined text-[22px]" style={{ fontVariationSettings: "'FILL' 1" }}>account_balance_wallet</span>
+          <span className="text-[10px] truncate max-w-[4.5rem]">Contributions</span>
+        </Link>
+        <Link href="/profile" className="flex flex-col items-center gap-1 text-slate-500 min-w-0 px-1">
+          <span className="material-symbols-outlined text-[22px]">person</span>
+          <span className="text-[10px] font-medium truncate max-w-[4.5rem]">Profile</span>
+        </Link>
+      </nav>
+
+      <a
+        href="#new-contribution"
+        className="md:hidden fixed bottom-24 right-4 z-40 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform"
+        aria-label="Jump to new contribution"
+      >
+        <span className="material-symbols-outlined">add</span>
+      </a>
     </div>
   );
 }
