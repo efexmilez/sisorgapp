@@ -39,6 +39,13 @@ export default function Header() {
           <button className="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
             <span className="material-symbols-outlined">settings</span>
           </button>
+          <button
+            onClick={logout}
+            className="md:hidden p-2 text-slate-500 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-full transition-colors"
+            title="Logout"
+          >
+            <span className="material-symbols-outlined">logout</span>
+          </button>
           <div className="flex items-center gap-2 ml-2">
             <div className="h-8 w-8 rounded-full bg-primary-container overflow-hidden">
               <span className="flex items-center justify-center h-full text-white font-bold text-sm">
